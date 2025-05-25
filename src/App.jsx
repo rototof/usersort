@@ -219,6 +219,27 @@ export default function UserSort() {
             <div className="border-2 border-dashed border-gray-400 p-4 text-center rounded mb-4 text-gray-600">
               Ziehe hier Bilder hinein, um sie hinzuzufügen
             </div>
+            <div className="mb-4 text-center">
+              <input
+                type="file"
+                accept="image/*"
+                capture="environment"
+                multiple
+                ref={fileInputRef}
+                onChange={(e) => {
+                  const files = Array.from(e.target.files).filter((file) =>
+                    file.type.startsWith("image/")
+                  );
+                  const newItems = files.map((file) => ({
+                    file,
+                    name: file.name,
+                    preview: URL.createObjectURL(file),
+                  }));
+                  setItems((prev) => [...prev, ...newItems]);
+                }}
+              />
+            </div>
+
 
             {!sortingStarted && items.length > 0 && (
               <ul className="mb-4 max-h-60 overflow-auto">
@@ -247,14 +268,14 @@ export default function UserSort() {
                 disabled={items.length < 2}
                 title="Sortiere alle Items"
               >
-                Sortieren starten ({estimateComparisons(items.length)})
+                Sortieren starten (~{estimateComparisons(items.length)} Vergleiche)
               </Button>
               <Button
                 onClick={() => startSorting(true)}
                 disabled={items.length < 2}
                 title="Finde nur das beste Item"
               >
-                Bestes Item finden ({estimateBestOnlyComparisons(items.length)})
+                Bestes Element finden (~{estimateBestOnlyComparisons(items.length)} Vergleiche)
               </Button>
             </div>
           </div>
