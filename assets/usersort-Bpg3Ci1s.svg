@@ -1,0 +1,14 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .up-arrow {
+      fill: #4CAF50; /* A nice green for up */
+    }
+    .down-arrow {
+      fill: #F44336; /* A clear red for down */
+    }
+  </style>
+
+  <path class="up-arrow" d="M12 20L16 12L20 20H12Z" transform="translate(-4, 0)"/>
+
+  <path class="down-arrow" d="M20 12L16 20L12 12H20Z" transform="translate(4, 0)"/>
+</svg>
